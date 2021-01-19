@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <script>
+            while(2>1)
+            {
+                // 1. getting the input from the user(checked)
+                alert("<|: GET THE DAY FOR THE DATE :|>");
+                alert("Just give the date and get the day");
+                alert("Note: Make sure that the year you enter, must be after 1606");
+                let gdate = prompt("enter the date ? (type exit to leave the site)");
+                if(gdate == "exit"){ break;}
+                let gmonth = prompt("enter the month ? (type exit to leave the site)");
+                if(gmonth == "exit"){ break;}
+                let gyear = prompt("enter the year ? (type exit to leave the site)");
+                if(gyear == "exit"){ break;}
+
+                // 2. variables used in the program
+                var year/*u*/,start_year = 1606/*u*/,i = 0;
+                var month_days/*u*/,year_days/*u*/,total/*u*/,total_year_days = 0/*u*/;
+                var month = 1 /*u*/ ,total_month_days = 0 /*u*/,days_left/*u*/,myday/*u*/;
+                var wkd = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];/*u*/
+                var date_days = 1,total_days ;
+                for(date_days =1; date_days<=gdate; date_days=date_days+1)
+                {
+                    total_days = date_days ;
+                }
+
+                // 3. checking whether the given year is leap or not(checked)
+                if(gyear%4 == 0)
+                {
+                    if(gyear%100 == 0)
+                    {
+                        if(gyear%400 == 0)
+                        {
+                            year = "leap";
+                        }
+                    }
+                    else
+                    {
+                        year = "leap";
+
+                    }
+                }
+                if((year != "leap") && (gdate == 29) && (gmonth == 2))
+                {
+                    console.log("The given date doesn't exists");
+                    continue;
+                }
+
+
+
+                // 4. calculating no. of days past the given year(checked)
+                while(start_year < gyear)
+                {
+                    if((start_year%4) == 0)
+                    {
+                        if((start_year%100) == 0)
+                        {
+                            if((start_year%400) == 0)
+                            {
+                                year_days = 366;
+                            }
+                            else
+                            {
+                                year_days = 365;
+
+                            }
+                        }
+                        else
+                        {
+                            year_days = 366;
+                        }
+                    }
+                    else
+                    {
+                        year_days = 365;
+                    }
+                    total_year_days = total_year_days + year_days;
+                    start_year = start_year + 1 ;                   
+                }
+                total = total_year_days;
+                
+
+                // 5. calculating no. of days past particular month in the given year(checked)
+                while(month < gmonth)
+                {
+                    if(month==1||month==3||month==5||month==7||month==8||month ==10||month==12)
+                    {
+                        month_days = 31;
+                    }
+                    if(month == 2)
+                    {
+                        if(year == "leap")
+                        {
+                            month_days = 29;
+                        }
+                        else
+                        {
+                            month_days = 28;
+                        }
+                    }
+                    if(month==4||month==6||month==9||month==11)
+                    {
+                        month_days = 30;
+                    }  
+                    total_month_days = total_month_days + month_days; 
+                    month = month + 1; 
+                }
+                total = total + total_month_days;
+                
+
+                // 6. configuring out the day for the given date
+                
+                total = total + total_days;
+                total = total - 1;
+                days_left = total % 7;
+                while(days_left >= i)
+                {
+                    myday = wkd[i];
+                    i = i+1;
+                }
+                console.log("The given date is",myday);
+            }
+        </script>
+    </head>
+</html>
